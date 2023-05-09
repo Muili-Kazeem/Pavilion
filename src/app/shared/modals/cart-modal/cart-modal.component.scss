@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 4.4rem;
+  height: calc(100vh - 2rem);
+  z-index: 300;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+}
+
+.modal {
+  padding: 2rem 1rem;
+  background-color: white;
+  width: 100%;
+  max-height: calc(100vh - 100px);
+  position: absolute;
+  right: 10%;
+  height: max-content;
+  overflow-y: auto;
+  width: max-content;
+  z-index: 301;
+
+  .itemCount {
+    margin-block-end: 2rem;
+  }
+
+  .total-cta {
+
+    .total {
+      font-weight: 700;
+      margin-block: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cta {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+  }
+}

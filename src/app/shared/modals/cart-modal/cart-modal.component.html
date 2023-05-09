@@ -1,0 +1,31 @@
+<div class="modal" *ngIf="(cart$ | async)?.length !== 0; else noCart">
+  <ng-container *ngIf="(cart$ | async) as cart" >
+    <h3
+      class="itemCount"
+      *ngIf="itemsCount$ | async as itemsCount"
+    > {{ itemsCount }} {{ itemsCount !== 1 ? "items" : "item" }} </h3>
+
+    <app-cart-prop
+      *ngFor="let cartItem of cart"
+      [cartItem]="cartItem"
+    ></app-cart-prop>
+
+    <div class="total-cta" *ngIf="cart.length !== 0">
+      <div class="total">
+        <p>Total</p>
+        <p>{{ (totalPrice$ | async)! | currency }}</p>
+      </div>
+      <div class="cta">
+        <button class="secondary" (click)="modalService.showCartModal = !modalService.showCartModal" >View Bag</button>
+        <button [routerLink]="['/cart']" (click)="modalService.showCartModal = !modalService.showCartModal" >Check out</button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #noCart>
+  <div>
+    <p>Empty cart</p>
+  </div>
+</ng-template>
+

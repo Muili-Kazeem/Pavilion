@@ -1,0 +1,47 @@
+<div class="product container" *ngIf="product$ | async as product">
+  <div class="product_pick">
+    <img src="../../../assets/driving.jpg" alt="">
+    <img src="../../../assets/driving.jpg" alt="">
+    <img src="../../../assets/driving.jpg" alt="">
+  </div>
+
+  <div class="product_showcase">
+    <img src="../../../assets/driving.jpg" alt="">
+  </div>
+
+  <div class="product_detail">
+    <div>
+      <h3 class="product_detail__name">{{ product.name }}</h3>
+      <h4 class="product_detail__subdesc">{{ product.shortDescription }}</h4>
+    </div>
+    <div class="product_detail__size">
+      <p class="label">Size:</p>
+      <div>
+        <span
+          class="size"
+          [ngClass]="{ selected: size ===  (sizeSelected$ | async) }"
+          (click)="onSizeSelected(size)"
+          *ngFor="let size of product.sizes"
+        >{{ size }}</span>
+      </div>
+    </div>
+    <div class="product_detail__colour">
+      <p class="label">Color:</p>
+      <div>
+        <span
+          class="colour"
+          [style.background-color]="colour"
+          [ngClass]="{ selected: colour === (colourSelected$ | async) }"
+          (click)="onColourSelected(colour)"
+          *ngFor="let colour of product.colours"
+        ></span>
+      </div>
+    </div>
+    <div class="product_detail__price">
+      <p class="label">Price:</p>
+      <span>{{ product.price }}</span>
+    </div>
+    <button (click)="addToCart()"> {{ (cartItem$ | async) ? "Save Cart Changes" : "Add to cart" }}</button>
+    <p> {{ product.description }} </p>
+  </div>
+</div>

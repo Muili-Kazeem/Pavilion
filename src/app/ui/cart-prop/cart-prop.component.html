@@ -1,0 +1,45 @@
+<div class="cartItem">
+  <div class="cartItem_detail">
+    <div>
+      <h3 class="cartItem_detail__name">{{ cartItem.itemName }}</h3>
+      <h4 class="cartItem_detail__subdesc">{{ cartItem.shortDescription }}</h4>
+    </div>
+    <div class="cartItem_detail__price">
+      <span>{{ cartItem.price | currency }}</span>
+    </div>
+    <div class="cartItem_detail__size">
+      <p class="label">Size:</p>
+      <div>
+        <span
+          class="size"
+          [ngClass]="{ selected: size === (sizeSelected$ | async) }"
+          (click)="onSizeSelected(size)"
+          *ngFor="let size of (product$ | async)?.sizes"
+        >{{ size }}</span>
+      </div>
+    </div>
+    <div class="cartItem_detail__colour">
+      <p class="label">Color:</p>
+      <div>
+        <span
+          class="colour"
+          [style.background-color]="colour"
+          [ngClass]="{ selected: colour === (colourSelected$ | async) }"
+          (click)="onColourSelected(colour)"
+          *ngFor="let colour of (product$ | async)?.colours"
+        ></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cartItem_showcase">
+    <div class="cartItem_showcase__count">
+      <button class="count" (click)="increaseCount()">+</button>
+      <span>{{ cartItem.count }}</span>
+      <button class="count" (click)="decreaseCount()">-</button>
+    </div>
+    <div class="cartItem_showcase__preview">
+      <img src="../../../assets/driving.jpg" alt="">
+    </div>
+  </div>
+</div>

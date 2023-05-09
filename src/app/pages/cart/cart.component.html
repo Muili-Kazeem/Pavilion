@@ -1,0 +1,24 @@
+<div class="cart container" *ngIf="(cart$ | async)?.cart?.length !== 0">
+  <ng-container *ngIf="cart$ | async as cart">
+    <h3 class="cart_header">CART</h3>
+    <div class="cart_items">
+      <app-cart-prop
+        *ngFor="let cartItem of cart.cart"
+        [cartItem]="cartItem"
+      ></app-cart-prop>
+    </div>
+    <div class="cart_total">
+      <div class="cart_total__labels">
+        <span>Tax 21%:</span>
+        <span>Quantity:</span>
+        <span>Total:</span>
+      </div>
+      <div class="cart_total__values">
+        <span> {{ cart.tax | currency }} </span>
+        <span> {{ itemsCount$ | async }} </span>
+        <span> {{ cart.totalAmount | currency }} </span>
+      </div>
+    </div>
+    <button (click)="order(cart.totalAmount)"> ORDER </button>
+  </ng-container>
+</div>

@@ -1,0 +1,79 @@
+@use "../../../variables";
+
+.product {
+  padding: 16px;
+  cursor: pointer;
+
+  &_img_wrapper {
+    position: relative;
+  }
+
+  &_desc {
+    padding-block: 1rem;
+    position: relative;
+
+    &__name {
+      font-weight: 300;
+      margin-block: .5rem;
+    }
+
+    &__cart {
+      position: absolute;
+      padding: .75rem;
+      border-radius: 50%;
+      background: variables.$primary-colour;
+      color: white;
+      top: 0;
+      right: 10%;
+      transform: translateY(-50%);
+      display: none;
+      cursor: pointer;
+    }
+  }
+
+
+  &:hover &_desc__cart {
+    display: block;
+  }
+
+  &:hover {
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12),
+                0px 4px 5px rgba(0, 0, 0, 0.14),
+                0px 2px 4px -1px rgba(0, 0, 0, 0.02);
+    transition: all 500ms ease;
+  }
+}
+
+.outOfStock {
+  pointer-events: none;
+  position: relative;
+}
+
+.outOfStock * {
+  color: rgba(200, 200, 200, 0.6);
+}
+
+.outOfStock .product_img_wrapper::before {
+  position: absolute;
+  z-index: 3;
+  content: '';
+  background: rgba(200, 200, 200, 0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.outOfStock .product_img_wrapper::after {
+  pointer-events: none;
+  content: "OUT OF STOCK";
+  font-weight: 700;
+  font-size: 1.5rem;
+  color:  #565656;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+

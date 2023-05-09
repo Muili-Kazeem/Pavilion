@@ -1,0 +1,17 @@
+.products_category {
+  padding-block: 2rem;
+
+  .category_name {
+    margin-block: 20px;
+  }
+
+  .products_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  app-product-card {
+    grid-column: span 1;
+  }
+}

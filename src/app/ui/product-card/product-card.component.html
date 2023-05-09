@@ -1,0 +1,10 @@
+<div class="product" [routerLink]="['/products', product.id]" routerLinkActive="router-link-active" [class.outOfStock]="!product.inStock">
+  <div class="product_img_wrapper">
+    <img src="../../../assets/driving.jpg" alt="">
+  </div>
+  <div class="product_desc">
+    <fa-icon [icon]="cart" class="product_desc__cart"></fa-icon>
+    <h4 class="product_desc__name">{{ product.name }}</h4>
+    <h4 class="product_desc__price">{{ product.price | currency }}</h4>
+  </div>
+</div>
