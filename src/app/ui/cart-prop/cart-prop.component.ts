@@ -4,6 +4,7 @@ import { CartService } from 'src/app/data-access/cart.service';
 import { ICartProduct } from 'src/app/data-access/interfaces/ICart';
 import { IProduct } from 'src/app/data-access/interfaces/IProduct';
 import { ProductsDataService } from 'src/app/data-access/products-data.service';
+import { iconSelect } from 'src/app/utils/funcs/iconSelect';
 
 @Component({
   selector: 'app-cart-prop',
@@ -16,7 +17,12 @@ export class CartPropComponent implements OnInit {
 
 
   @Input() cartItem!: ICartProduct;
-  product$!: Observable<IProduct>
+  @Input() currency$!: Observable<string>;
+  product$!: Observable<IProduct>;
+
+  icon(currency: string) {
+    return iconSelect(currency)
+  }
 
   ngOnInit() {
     this.product$ = this.productService.getProduct(this.cartItem.itemId).pipe(

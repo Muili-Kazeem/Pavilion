@@ -2,6 +2,10 @@
   <h2 class="category_name">Category name</h2>
 
   <section class="products_grid" *ngIf="products$">
-    <app-product-card *ngFor="let product of products$ | async" [product]="product"></app-product-card>
+    <app-product-card
+      *ngFor="let product of products$ | async"
+      [product]="product"
+      [currency$]="currency$"
+    ></app-product-card>
   </section>
 </div>

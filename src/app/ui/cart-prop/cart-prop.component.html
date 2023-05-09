@@ -5,7 +5,7 @@
       <h4 class="cartItem_detail__subdesc">{{ cartItem.shortDescription }}</h4>
     </div>
     <div class="cartItem_detail__price">
-      <span>{{ cartItem.price | currency }}</span>
+      <span> <fa-icon [icon]="icon( (currency$|async)! )"></fa-icon>{{ cartItem.price | currency }}</span>
     </div>
     <div class="cartItem_detail__size">
       <p class="label">Size:</p>

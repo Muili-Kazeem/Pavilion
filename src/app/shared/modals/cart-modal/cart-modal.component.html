@@ -13,7 +13,7 @@
     <div class="total-cta" *ngIf="cart.length !== 0">
       <div class="total">
         <p>Total</p>
-        <p>{{ (totalPrice$ | async)! | currency }}</p>
+        <p> <fa-icon [icon]="icon( (currency$|async)! )"></fa-icon>{{ (totalPrice$ | async)! | currency }}</p>
       </div>
       <div class="cta">
         <button class="secondary" (click)="modalService.showCartModal = !modalService.showCartModal" >View Bag</button>

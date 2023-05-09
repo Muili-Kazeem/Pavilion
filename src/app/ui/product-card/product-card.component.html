@@ -5,6 +5,6 @@
   <div class="product_desc">
     <fa-icon [icon]="cart" class="product_desc__cart"></fa-icon>
     <h4 class="product_desc__name">{{ product.name }}</h4>
-    <h4 class="product_desc__price">{{ product.price | currency }}</h4>
+    <h4 class="product_desc__price"><fa-icon [icon]="icon( (currency$|async)! )"></fa-icon>{{ product.price | currency }}</h4>
   </div>
 </div>

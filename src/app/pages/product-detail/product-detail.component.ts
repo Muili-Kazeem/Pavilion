@@ -5,6 +5,7 @@ import { CartService } from 'src/app/data-access/cart.service';
 import { ICartProduct } from 'src/app/data-access/interfaces/ICart';
 import { IProduct } from 'src/app/data-access/interfaces/IProduct';
 import { ProductsDataService } from 'src/app/data-access/products-data.service';
+import { iconSelect } from 'src/app/utils/funcs/iconSelect';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,6 +17,11 @@ export class ProductDetailComponent implements OnDestroy {
 
   productId!: string;
   itemSub!: Subscription;
+  currency$ = this.productService.currency$;
+
+  icon(currency: string) {
+    return iconSelect(currency)
+  }
 
   product$: Observable<IProduct> = this.route.paramMap.pipe(
     switchMap(route => {

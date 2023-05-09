@@ -14,9 +14,9 @@
         <span>Total:</span>
       </div>
       <div class="cart_total__values">
-        <span> {{ cart.tax | currency }} </span>
+        <span> <fa-icon [icon]="icon( (currency$|async)! )"></fa-icon>{{ cart.tax | currency }} </span>
         <span> {{ itemsCount$ | async }} </span>
-        <span> {{ cart.totalAmount | currency }} </span>
+        <span> <fa-icon [icon]="icon( (currency$|async)! )"></fa-icon>{{ cart.totalAmount | currency }} </span>
       </div>
     </div>
     <button (click)="order(cart.totalAmount)"> ORDER </button>

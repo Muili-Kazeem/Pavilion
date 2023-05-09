@@ -10,5 +10,6 @@ export class HomeComponent {
 
   constructor( private productService: ProductsDataService) {}
 
-  products$ = this.productService.products$
+  products$ = this.productService.products$;
+  currency$ = this.productService.currency$
 }

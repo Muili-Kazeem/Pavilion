@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { CartService } from 'src/app/data-access/cart.service';
 import { CheckoutService } from 'src/app/data-access/checkout.service';
-import { ICartDetail, ICartProduct } from 'src/app/data-access/interfaces/ICart';
+import { ICartDetail } from 'src/app/data-access/interfaces/ICart';
+import { ProductsDataService } from 'src/app/data-access/products-data.service';
+import { iconSelect } from 'src/app/utils/funcs/iconSelect';
 
 @Component({
   selector: 'app-cart',
@@ -10,10 +12,17 @@ import { ICartDetail, ICartProduct } from 'src/app/data-access/interfaces/ICart'
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  constructor(private cartService: CartService, private checkoutService: CheckoutService) {}
+  constructor(
+    private cartService: CartService,
+    private checkoutService: CheckoutService,
+    private productService: ProductsDataService
+  ) {}
 
   cart$!: Observable<ICartDetail>;
   itemsCount$! : Observable<number>;
+  currency$ = this.productService.currency$;
+
+  icon(currency: string) { return iconSelect(currency) }
 
   ngOnInit(): void {
     this.cart$ = this.cartService.totalCart$.pipe(
