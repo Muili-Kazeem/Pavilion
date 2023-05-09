@@ -12,6 +12,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartPropComponent } from './ui/cart-prop/cart-prop.component';
 import { CartModalComponent } from './shared/modals/cart-modal/cart-modal.component';
 import { CurrencyPipe } from './shared/pipes/currency.pipe';
+import { WomenComponent } from './pages/women/women.component';
+import { KidsComponent } from './pages/kids/kids.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { CurrencyPipe } from './shared/pipes/currency.pipe';
     NotFoundComponent,
     CartPropComponent,
     CartModalComponent,
-    CurrencyPipe
+    CurrencyPipe,
+    WomenComponent,
+    KidsComponent
   ],
   imports: [
     BrowserModule,

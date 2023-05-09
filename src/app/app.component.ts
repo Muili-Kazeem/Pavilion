@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { faBuysellads } from '@fortawesome/free-brands-svg-icons';
-import { faBagShopping, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import {  faBagShopping, faCartShopping, faChevronDown, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { ModalService } from './shared/services/modal.service';
 import { CartService } from './data-access/cart.service';
+import { ProductsDataService } from './data-access/products-data.service';
+import { iconSelect } from './utils/funcs/iconSelect';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,37 @@ import { CartService } from './data-access/cart.service';
 })
 export class AppComponent {
 
-  constructor(public modalService: ModalService, private cartService: CartService) {
+  icon(currency: string) {
+    return iconSelect(currency)
   }
 
-  cartCount$ = this.cartService.items$
+  constructor(
+    public modalService: ModalService,
+    private cartService: CartService,
+    private productService: ProductsDataService
+    ) { }
+
+  cart$ = this.cartService.items$;
+  currencies$ = this.productService.currencies$;
 
   shop = faBagShopping;
   cart = faCartShopping;
+  money = faDollarSign;
+  close = faChevronDown;
+
+  private _currencyDropdown: boolean = false;
+  get currencyDropdown() {
+    return this._currencyDropdown;
+  }
+  set currencyDropdown(value: boolean) {
+    this._currencyDropdown = value;
+  }
+
+  selectCurrency() {
+    this.currencyDropdown = !this.currencyDropdown;
+  }
+
+  changeCurrency(currency: string) {
+    this.productService.changeCurrency(currency);
+  }
 }

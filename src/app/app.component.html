@@ -2,24 +2,31 @@
   <nav class="nav">
     <div class="nav-wrapper container">
       <ul class="nav_links">
-        <li> <a [routerLink]="['/']" routerLinkActive="router-link-active">Women</a></li>
-        <li> <a href="#">Men</a></li>
-        <li> <a href="#">Kids</a></li>
+        <li> <a [routerLink]="['/products']" routerLinkActive="active">Women</a></li>
+        <li> <a [routerLink]="['women']" routerLinkActive="active">Men</a></li>
+        <li> <a [routerLink]="['kids']" routerLinkActive="active">Kids</a></li>
       </ul>
 
       <div class="home">
-        <fa-icon [icon]="shop" ></fa-icon>
+        <fa-icon [icon]="shop"></fa-icon>
       </div>
 
       <div class="cart-currency">
-        <select name="currency" id="select">
-          <option value="">Nara</option>
-          <option value="">Yen</option>
-          <option value="">Dollar</option>
-        </select>
+        <div class="currency">
+          <div class="currency_placeholder" (click)="selectCurrency()">
+            <fa-icon [icon]="money"></fa-icon><fa-icon class="dropdown" [icon]="close"></fa-icon>
+          </div>
+          <div class="currency_container" *ngIf="currencyDropdown">
+            <span
+              class="currency"
+              *ngFor="let currency of (currencies$ | async)"
+              (click)="changeCurrency(currency)"
+            > <fa-icon [icon]="icon(currency)"></fa-icon> <span>{{ currency }}</span> </span>
+          </div>
+        </div>
         <div class="cart">
           <fa-icon [icon]="cart" (click)="modalService.showCartModal = !modalService.showCartModal"></fa-icon>
-          <span *ngIf="(cartCount$ | async)?.length !== 0"><p>{{ (cartCount$ | async)?.length }}</p></span>
+          <span *ngIf="(cart$ | async)?.length !== 0"><p>{{ (cart$ | async)?.length }}</p></span>
         </div>
       </div>
     </div>

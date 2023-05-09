@@ -50,7 +50,7 @@ export class CartPropComponent implements OnInit {
   }
 
   decreaseCount() {
-    const newCount = this.cartItem.count -= 1;
+    const newCount = ( this.cartItem.count - 1 ) < 1 ? 1 : (this.cartItem.count -= 1);
     const newItem: ICartProduct = { ...this.cartItem, count: newCount };
     this.cartService.addToCart(newItem);
   }

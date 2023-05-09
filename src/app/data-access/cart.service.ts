@@ -30,7 +30,6 @@ export class CartService {
   clearCart() {
     this.items = [];
     this.itemsSubject.next(this.items);
-    console.log("Deleted")
   }
 
   getCart() {
@@ -74,7 +73,7 @@ export class CartService {
       totalAmount: totalPrice,
       tax,
     } as ICartDetail)),
-    tap(all => console.log(all))
+    // tap(all => console.log(all))
   )
 
 }
