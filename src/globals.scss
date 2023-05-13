@@ -63,22 +63,3 @@ button.secondary {
   background: white;
   color: black;
 }
-
-select {
-  background-color: transparent;
-  border: none;
-  padding: .5rem;
-  margin: 0;
-  width: max-content;
-  font-family: variables.$ff-primary;
-  font-size: 1rem;
-  cursor: pointer;
-  outline: none;
-  line-height: 1.1;
-  // appearance: none;
-}
-
-// select option {
-//   background-color: yellow;
-//   line-height: 2;
-// }
