@@ -15,11 +15,14 @@ export class CartService {
   items: ICartProduct[] = [];
 
   addToCart(cartItem: ICartProduct) {
-    const existingItem = this.items.find(item => item.itemId === cartItem.itemId );
+    var ind = 0;
+    const existingItem = this.items.find((item, index) => { ind = index; return item.itemId === cartItem.itemId} );
     if (existingItem) {
       const reCalculatedCartItem = this.reCalculatePrice(cartItem);
       const otherItems = this.items.filter(item => item.itemId !== cartItem.itemId);
-      this.items = [...otherItems, reCalculatedCartItem]
+      // this.items = [...otherItems, reCalculatedCartItem]
+      this.items = [...otherItems]
+      this.items.splice(ind, 0, reCalculatedCartItem);
     } else {
       const reCalculatedCartItem = this.reCalculatePrice(cartItem);
       this.items.push(reCalculatedCartItem)
@@ -46,6 +49,9 @@ export class CartService {
     const newItem: ICartProduct = { ...item, totalPrice: item.count * item.price };
     return newItem
   }
+
+
+  // FIX REARARRAGNMENT OF CART PRODUCTS WHEN UPDATED
 
   totalPrice$ = this.items$.pipe(
     map(cartItems => {
