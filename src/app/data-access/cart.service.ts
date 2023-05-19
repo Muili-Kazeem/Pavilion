@@ -20,7 +20,6 @@ export class CartService {
     if (existingItem) {
       const reCalculatedCartItem = this.reCalculatePrice(cartItem);
       const otherItems = this.items.filter(item => item.itemId !== cartItem.itemId);
-      // this.items = [...otherItems, reCalculatedCartItem]
       this.items = [...otherItems]
       this.items.splice(ind, 0, reCalculatedCartItem);
     } else {
@@ -51,8 +50,6 @@ export class CartService {
   }
 
 
-  // FIX REARARRAGNMENT OF CART PRODUCTS WHEN UPDATED
-
   totalPrice$ = this.items$.pipe(
     map(cartItems => {
       return cartItems.reduce((acc, cartItem) => {
@@ -79,7 +76,6 @@ export class CartService {
       totalAmount: totalPrice,
       tax,
     } as ICartDetail)),
-    // tap(all => console.log(all))
   )
 
 }

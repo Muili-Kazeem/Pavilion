@@ -44,7 +44,6 @@ export class ProductDetailComponent implements OnDestroy {
   }
 
   cartItem$: Observable<ICartProduct | undefined> = this.cartService.getCartItem(this.product$).pipe(
-    // tap(all => console.log(all)),
     tap(all => {
       this.colourSelectedSubject.next(all ? all.selectedColour! : "");
       this.sizeSelectedSubject.next(all ? all.selectedSize! : "");
@@ -55,7 +54,6 @@ export class ProductDetailComponent implements OnDestroy {
     this.itemSub = combineLatest([this.product$, this.colourSelected$, this.sizeSelected$]).pipe(
       map(([item, itemColour, itemSize]) => ({
         itemId: item.id,
-        // Look into fixing count
         count: 1,
         itemName: item.name,
         brand: item.brand,
